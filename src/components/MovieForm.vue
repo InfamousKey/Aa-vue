@@ -29,25 +29,34 @@
       <button type="submit">Add</button>
     </form>
 
-    <div v-if="movies.length">
+    <div>
+      <label for="sortOptions">Sort by:</label>
+      <select id="sortOptions" v-model="sortBy">
+        <option value="title">Title</option>
+        <option value="releaseDateUK">Release Date</option>
+        <option value="director">Director</option>
+      </select>
+    </div>
+
+    <div v-if="sortMovies.length">
       <h2>Movie List</h2>
-        <div v-for="(movie, index) in movies" :key="index">
-          <h3>{{ movie.title }}</h3> - {{ movie.releaseDateUK }} 
-          <p>directed by {{ movie.director }}</p>
-          <p>See more on <a :href="movie.imdbLink" target="_blank" rel="noopener noreferrer">
-              IMDB
-            </a>
-          </p>
-          <button @click="deleteMovie(index)">Delete Movie</button>
-        </div>
+      <div v-for="(movie, index) in sortMovies" :key="index">
+        <h3>{{ movie.title }}</h3> - {{ movie.releaseDateUK }} 
+        <p>directed by {{ movie.director }}</p>
+        <p>See more on <a :href="movie.imdbLink" target="_blank" rel="noopener noreferrer">
+            IMDB
+          </a>
+        </p>
+        <button @click="deleteMovie(index)">Delete Movie</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'MovieForm',
   data() {
-    name: 'MovieForm'
     return {
       // Existing array to store movies
       movies: [],
@@ -58,15 +67,30 @@ export default {
         imdbLink: '',
         releaseDateUK: '',
         synopsis: ''
-      }
+      },
+      // Selected sorting option
+      sortBy: 'title' // Default sorting by title
     };
+  },
+  computed: {
+    sortMovies() {
+      return [...this.movies].sort((a, b) => {
+        if (this.sortBy === 'title') {
+          return a.title.localeCompare(b.title);
+        } else if (this.sortBy === 'releaseDateUK') {
+          return new Date(a.releaseDateUK) - new Date(b.releaseDateUK);
+        } else if (this.sortBy === 'director') {
+          return a.director.localeCompare(b.director);
+        }
+        return 0; // If sortBy doesn't match any case
+      });
+    }
   },
   methods: {
     addMovie() {
-      // Add the new movie object to the movies array
       this.movies.push({ ...this.newMovie });
 
-      // Reset the form fields
+      // Reset the form
       this.newMovie = {
         title: '',
         director: '',
@@ -76,9 +100,8 @@ export default {
       };
     },
     deleteMovie(index) {
-        // Remove the movie at the given index from the movies array
-        this.movies.splice(index, 1);
-    }
+      this.movies.splice(index, 1);
+    },
   }
 };
 </script>
