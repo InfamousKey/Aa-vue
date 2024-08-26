@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page - Altitude Angel Vue Challenge</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha256-fx038NkLY4U1TCrBDiu5FWPEa9eiZu01EiLryshJbCo=" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm bg-white border-bottom mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">Altitude Angel Vue Challenge</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="text-center">
+                <h1 class="display-4">Welcome</h1>
+                <p>
+                    This challenge is brought to you by:<br />
+                    <a href="https://vuejs.org/">Vue.js</a><br />
+                    <a href="https://getbootstrap.com/">Bootstrap</a><br />
+                    <a href="https://sass-lang.com/">Sass</a><br />
+                    <a href="https://vitejs.dev/">Vite</a>
+                </p>
+            </div>
+            <div id="app">
+                <movie-form></movie-form>
+                <hr />
+            </div>
+
+            <p>An output of our list of movies serialized to JSON:</p>
+
+            <!-- <pre id="jsonDisplay"></pre> -->
+        </main>
+    </div>
+
+    <footer class="border-top text-muted">
+        <div class="container">
+            &copy; 2023 - Altitude Angel Vue Challenge
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha256-qlPVgvl+tZTCpcxYJFdHB/m6mDe84wRr+l81VoYPTgQ=" crossorigin="anonymous"></script>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+        var movies = [{"title":"Ghostbusters","director":"Ivan Reitman","releaseDateUK":"1984-12-07T00:00:00","synopsis":"Three former parapsychology professors set up shop as a unique ghost removal service.","imdbLink":"https://www.imdb.com/title/tt0087332/"},{"title":"Back to the Future","director":"Robert Zemeckis","releaseDateUK":"1985-12-04T00:00:00","synopsis":"Marty McFly, a 17-year-old high school student, is accidentally sent thirty years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.","imdbLink":"https://www.imdb.com/title/tt0088763/"},{"title":"Raiders of the Lost Ark","director":"Steven Spielberg","releaseDateUK":"1981-07-30T00:00:00","synopsis":"In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before Adolf Hitler\u0027s Nazis can obtain its awesome powers.","imdbLink":"https://www.imdb.com/title/tt0082971/"}];
+        console.log("movies", movies);
+        
+        document.addEventListener("DOMContentLoaded", (event) => {
+            aa.initialize(movies);
+        });
+    </script>
+</body>
+</html>
